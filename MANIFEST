@@ -1,9 +1,14 @@
-Build.PL
+.travis.yml
 Changes
+ignore.txt
 lib/HON/Http/UrlChecker/Service.pm
+LICENSE
 MANIFEST			This list of files
+MANIFEST.SKIP
 README
+README.md
 t/00-load.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+xt/boilerplate.t
