@@ -1,3 +1,6 @@
+.editorconfig
+.perlcriticrc
+.perltidyrc
 .travis.yml
 Changes
 ignore.txt
@@ -8,6 +11,7 @@ MANIFEST.SKIP
 README
 README.md
 t/00-load.t
+t/01-urlchecker-service.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t

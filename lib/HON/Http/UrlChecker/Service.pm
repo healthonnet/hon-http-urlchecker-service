@@ -4,6 +4,11 @@ use 5.006;
 use strict;
 use warnings;
 
+use LWP::UserAgent;
+
+use base 'Exporter';
+our @EXPORT_OK = qw/p_createUserAgent/;
+
 =head1 NAME
 
 HON::Http::UrlChecker::Service - The great new HON::Http::UrlChecker::Service!
@@ -28,25 +33,23 @@ Perhaps a little code snippet.
     my $foo = HON::Http::UrlChecker::Service->new();
     ...
 
-=head1 EXPORT
+=head1 PRIVATE SUBROUTINES/METHODS
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+=head2 p_createUserAgent
 
-=head1 SUBROUTINES/METHODS
-
-=head2 function1
+Return a LWP::UserAgent.
+LWP::UserAgent objects can be used to dispatch web requests.
 
 =cut
 
-sub function1 {
-}
+sub p_createUserAgent {
+  my $ua = LWP::UserAgent->new;
 
-=head2 function2
+  $ua->timeout(1200);
+  $ua->agent('HonBot');
+  $ua->env_proxy;
 
-=cut
-
-sub function2 {
+  return $ua;
 }
 
 =head1 AUTHOR
@@ -58,9 +61,6 @@ William Belle, C<< <william.belle at gmail.com> >>
 Please report any bugs or feature requests to C<bug-hon-http-urlchecker-service at rt.cpan.org>, or through
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=HON-Http-UrlChecker-Service>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
-
-
-
 
 =head1 SUPPORT
 
