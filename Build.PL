@@ -17,7 +17,11 @@ my $builder = Module::Build->new(
     'File::Find::Rule'      => 0.34,
     'File::Copy::Recursive' => 0.38,
   },
-  requires           => { 'LWP::UserAgent' => 6.15, },
+  requires => {
+    'JSON'           => 2.90,
+    'Readonly'       => 2.05,
+    'LWP::UserAgent' => 6.15,
+  },
   add_to_cleanup     => ['HON-Http-UrlChecker-Service-*'],
   create_makefile_pl => 'traditional',
 );

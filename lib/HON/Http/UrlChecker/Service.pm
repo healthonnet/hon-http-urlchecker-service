@@ -4,14 +4,12 @@ use 5.006;
 use strict;
 use warnings;
 
+use Readonly;
 use LWP::UserAgent;
-
-use base 'Exporter';
-our @EXPORT_OK = qw/p_createUserAgent p_getUrl/;
 
 =head1 NAME
 
-HON::Http::UrlChecker::Service - The great new HON::Http::UrlChecker::Service!
+HON::Http::UrlChecker::Service - HTTP Status Code Checker
 
 =head1 VERSION
 
@@ -21,17 +19,32 @@ Version 0.01
 
 our $VERSION = '0.01';
 
-
 =head1 SYNOPSIS
-
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
 
     use HON::Http::UrlChecker::Service;
 
-    my $foo = HON::Http::UrlChecker::Service->new();
-    ...
+=head1 DESCRIPTION
+
+TODO
+
+=cut
+
+use base 'Exporter';
+our @EXPORT_OK = qw/p_createUserAgent p_getUrl p_retrieveInfo/;
+
+Readonly::Array my @HEADERFIELDS => (
+  'location',
+  'server',
+  'content-type',
+  'title',
+  'date'
+);
+
+Readonly::Array my @RESPONSEFIELDS => (
+  'protocol',
+  'code',
+  'message'
+);
 
 =head1 PRIVATE SUBROUTINES/METHODS
 
@@ -64,6 +77,31 @@ sub p_getUrl {
   my ($ua, $url) = @_;
 
   return $ua->get($url);
+}
+
+=head2 p_retrieveInfo
+
+Retrieve desired fields from an HTTP::Response
+
+=cut
+
+sub p_retrieveInfo {
+  my $response = shift;
+
+  my %locationStatus = ();
+  foreach my $field (@HEADERFIELDS){
+    if (defined $response->header($field)){
+      $locationStatus{$field} = $response->header($field);
+    }
+  }
+
+  foreach my $field (@RESPONSEFIELDS){
+    if (defined $response->$field){
+      $locationStatus{$field} = $response->$field;
+    }
+  }
+
+  return %locationStatus;
 }
 
 =head1 AUTHOR
