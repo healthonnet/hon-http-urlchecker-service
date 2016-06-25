@@ -11,8 +11,11 @@ my $builder = Module::Build->new(
   release_status     => 'stable',
   configure_requires => { 'Module::Build' => 0, },
   build_requires     => {
-    'Test::More'       => 0,
-    'Test::MockModule' => 0.11,
+    'Test::More'            => 0,
+    'Test::MockModule'      => 0.11,
+    'File::Temp'            => 0.2304,
+    'File::Find::Rule'      => 0.34,
+    'File::Copy::Recursive' => 0.38,
   },
   requires           => { 'LWP::UserAgent' => 6.15, },
   add_to_cleanup     => ['HON-Http-UrlChecker-Service-*'],

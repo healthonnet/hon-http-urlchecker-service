@@ -7,12 +7,18 @@ ignore.txt
 lib/HON/Http/UrlChecker/Service.pm
 LICENSE
 MANIFEST			This list of files
+MANIFEST.bak
 MANIFEST.SKIP
 README
 README.md
 t/00-load.t
-t/01-urlchecker-service.t
+t/01-mocksite.t
+t/02-urlchecker-service.t
 t/manifest.t
+t/MockSite.pm
 t/pod-coverage.t
 t/pod.t
+t/resources/t-gone/index.html
+t/resources/t-gone/symptoms.html
+t/resources/t-gone/treatment.html
 xt/boilerplate.t
