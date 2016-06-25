@@ -7,7 +7,6 @@ ignore.txt
 lib/HON/Http/UrlChecker/Service.pm
 LICENSE
 MANIFEST			This list of files
-MANIFEST.bak
 MANIFEST.SKIP
 README
 README.md
