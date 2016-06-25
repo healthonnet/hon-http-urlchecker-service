@@ -7,7 +7,7 @@ use warnings;
 use LWP::UserAgent;
 
 use base 'Exporter';
-our @EXPORT_OK = qw/p_createUserAgent/;
+our @EXPORT_OK = qw/p_createUserAgent p_getUrl/;
 
 =head1 NAME
 
@@ -50,6 +50,20 @@ sub p_createUserAgent {
   $ua->env_proxy;
 
   return $ua;
+}
+
+=head2 p_getUrl
+
+Dispatch a GET request on the given $url
+The return value is a response object. See HTTP::Response for a description
+of the interface it provides.
+
+=cut
+
+sub p_getUrl {
+  my ($ua, $url) = @_;
+
+  return $ua->get($url);
 }
 
 =head1 AUTHOR
