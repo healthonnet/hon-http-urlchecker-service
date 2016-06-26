@@ -4,6 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
+use JSON;
 use Readonly;
 use LWP::UserAgent;
 
@@ -30,7 +31,7 @@ TODO
 =cut
 
 use base 'Exporter';
-our @EXPORT_OK = qw/p_createUserAgent p_getUrl p_retrieveInfo/;
+our @EXPORT_OK = qw/p_createUserAgent p_getUrl p_parseResponse checkUrl/;
 
 Readonly::Array my @HEADERFIELDS => (
   'location',
@@ -102,6 +103,29 @@ sub p_retrieveInfo {
   }
 
   return %locationStatus;
+}
+
+=head2 p_parseResponse
+
+Retrieve a list of Status from HTTP::Response
+
+=cut
+
+sub p_parseResponse {
+  my $response = shift;
+
+  my @listStatus = ();
+  my @redirects = $response->redirects;
+  if (scalar @redirects > 0){
+    foreach my $redirect (@redirects){
+      my %status = p_retrieveInfo($redirect);
+      push @listStatus, \%status;
+    }
+  }
+  my %status = p_retrieveInfo($response);
+  push @listStatus, \%status;
+
+  return @listStatus;
 }
 
 =head1 AUTHOR
