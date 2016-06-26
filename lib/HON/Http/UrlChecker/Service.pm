@@ -26,7 +26,8 @@ our $VERSION = '0.01';
 
 =head1 DESCRIPTION
 
-TODO
+Check status code, response headers, redirect location and redirect chain
+of a HTTP connection.
 
 =cut
 
@@ -46,6 +47,25 @@ Readonly::Array my @RESPONSEFIELDS => (
   'code',
   'message'
 );
+
+=head1 SUBROUTINES/METHODS
+
+=head2 checkUrl
+
+Check a url (status code, response headers, redirect location and
+redirect chain).
+
+=cut
+
+sub checkUrl {
+  my $url = shift;
+
+  my $ua = p_createUserAgent();
+  my $response = p_getUrl($ua, $url);
+  my @listStatus = p_parseResponse($response);
+
+  return @listStatus;
+}
 
 =head1 PRIVATE SUBROUTINES/METHODS
 
