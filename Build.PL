@@ -12,7 +12,6 @@ my $builder = Module::Build->new(
   configure_requires => { 'Module::Build' => 0, },
   build_requires     => {
     'Test::More'            => 0,
-    'Test::MockModule'      => 0.11,
     'File::Temp'            => 0.2304,
     'File::Find::Rule'      => 0.34,
     'File::Copy::Recursive' => 0.38,

@@ -1,8 +1,6 @@
 use strict;
 use warnings;
 
-use Test::MockModule;
-
 use lib 't/';
 use MockSite;
 use HON::Http::UrlChecker::Service qw/p_createUserAgent p_getUrl/;
