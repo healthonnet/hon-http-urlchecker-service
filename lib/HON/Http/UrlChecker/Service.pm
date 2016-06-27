@@ -34,6 +34,8 @@ of a HTTP connection.
 use base 'Exporter';
 our @EXPORT_OK = qw/p_createUserAgent p_getUrl p_parseResponse checkUrl/;
 
+Readonly::Scalar my $TIMEOUT => 1200;
+
 Readonly::Array my @HEADERFIELDS => qw(
   location
   server
@@ -79,7 +81,7 @@ LWP::UserAgent objects can be used to dispatch web requests.
 sub p_createUserAgent {
   my $ua = LWP::UserAgent->new;
 
-  $ua->timeout(1200);
+  $ua->timeout($TIMEOUT);
   $ua->agent('HonBot');
   $ua->env_proxy;
 
