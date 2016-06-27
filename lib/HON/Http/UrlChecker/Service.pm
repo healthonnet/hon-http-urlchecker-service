@@ -34,18 +34,18 @@ of a HTTP connection.
 use base 'Exporter';
 our @EXPORT_OK = qw/p_createUserAgent p_getUrl p_parseResponse checkUrl/;
 
-Readonly::Array my @HEADERFIELDS => (
-  'location',
-  'server',
-  'content-type',
-  'title',
-  'date'
+Readonly::Array my @HEADERFIELDS => qw(
+  location
+  server
+  content-type
+  title
+  date
 );
 
-Readonly::Array my @RESPONSEFIELDS => (
-  'protocol',
-  'code',
-  'message'
+Readonly::Array my @RESPONSEFIELDS => qw(
+  protocol
+  code
+  message
 );
 
 =head1 SUBROUTINES/METHODS
