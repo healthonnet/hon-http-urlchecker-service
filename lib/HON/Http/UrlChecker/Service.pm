@@ -24,6 +24,8 @@ our $VERSION = '0.01';
 
     use HON::Http::UrlChecker::Service;
 
+    my @listOfStatus = checkUrl('http://www.example.com');
+
 =head1 DESCRIPTION
 
 Check status code, response headers, redirect location and redirect chain
@@ -52,7 +54,7 @@ Readonly::Array my @RESPONSEFIELDS => qw(
 
 =head1 SUBROUTINES/METHODS
 
-=head2 checkUrl
+=head2 checkUrl( $url )
 
 Check a url (status code, response headers, redirect location and
 redirect chain).
