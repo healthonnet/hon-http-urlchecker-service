@@ -62,8 +62,8 @@ redirect chain).
 sub checkUrl {
   my $url = shift;
 
-  my $ua = p_createUserAgent();
-  my $response = p_getUrl($ua, $url);
+  my $ua         = p_createUserAgent();
+  my $response   = p_getUrl( $ua, $url );
   my @listStatus = p_parseResponse($response);
 
   return @listStatus;
@@ -97,7 +97,7 @@ of the interface it provides.
 =cut
 
 sub p_getUrl {
-  my ($ua, $url) = @_;
+  my ( $ua, $url ) = @_;
 
   return $ua->get($url);
 }
@@ -112,14 +112,14 @@ sub p_retrieveInfo {
   my $response = shift;
 
   my %locationStatus = ();
-  foreach my $field (@HEADERFIELDS){
-    if (defined $response->header($field)){
+  foreach my $field (@HEADERFIELDS) {
+    if ( defined $response->header($field) ) {
       $locationStatus{$field} = $response->header($field);
     }
   }
 
-  foreach my $field (@RESPONSEFIELDS){
-    if (defined $response->$field){
+  foreach my $field (@RESPONSEFIELDS) {
+    if ( defined $response->$field ) {
       $locationStatus{$field} = $response->$field;
     }
   }
@@ -137,9 +137,9 @@ sub p_parseResponse {
   my $response = shift;
 
   my @listStatus = ();
-  my @redirects = $response->redirects;
-  if (scalar @redirects > 0){
-    foreach my $redirect (@redirects){
+  my @redirects  = $response->redirects;
+  if ( scalar @redirects > 0 ) {
+    foreach my $redirect (@redirects) {
       my %status = p_retrieveInfo($redirect);
       push @listStatus, \%status;
     }
@@ -154,7 +154,7 @@ sub p_parseResponse {
 
 William Belle, C<< <william.belle at gmail.com> >>
 
-=head1 BUGS
+=head1 BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to C<bug-hon-http-urlchecker-service at rt.cpan.org>, or through
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=HON-Http-UrlChecker-Service>.  I will be notified, and then you'll
@@ -165,7 +165,6 @@ automatically be notified of progress on your bug as I make changes.
 You can find documentation for this module with the perldoc command.
 
     perldoc HON::Http::UrlChecker::Service
-
 
 You can also look for information at:
 
@@ -188,10 +187,6 @@ L<http://cpanratings.perl.org/d/HON-Http-UrlChecker-Service>
 L<http://search.cpan.org/dist/HON-Http-UrlChecker-Service/>
 
 =back
-
-
-=head1 ACKNOWLEDGEMENTS
-
 
 =head1 LICENSE AND COPYRIGHT
 
@@ -221,7 +216,6 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-
 =cut
 
-1; # End of HON::Http::UrlChecker::Service
+1;    # End of HON::Http::UrlChecker::Service
