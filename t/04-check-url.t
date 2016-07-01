@@ -5,7 +5,8 @@ use lib 't/';
 use MockSite;
 use HON::Http::UrlChecker::Service qw/checkUrl/;
 
-use Test::More tests => 7;
+use Test::Warn;
+use Test::More tests => 13;
 
 my $urlRoot = MockSite::mockLocalSite('t/resources/t-gone');
 
@@ -19,3 +20,14 @@ is($list[0]->{title}, 'Tinnitus Treatment From T-Gone', '');
 is(scalar @list, 1, 'a simple 404 response');
 is($list[0]->{code}, 404, 'code should be 404');
 like($list[0]->{message}, qr/does not exist/, 'message should contain not');
+
+my @wrongUrls = (
+  '://', 'www.example.com', 'example.com/abc', '://example.com', '', 'http:',
+);
+foreach my $url (@wrongUrls){
+  warning_is {
+    carp => checkUrl($url)
+  } {
+    carped => "Wrong url: $url"
+  };
+}

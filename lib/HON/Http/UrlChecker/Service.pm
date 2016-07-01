@@ -4,6 +4,8 @@ use 5.006;
 use strict;
 use warnings;
 
+use URI;
+use Carp;
 use JSON;
 use Readonly;
 use LWP::UserAgent;
@@ -64,11 +66,18 @@ redirect chain).
 sub checkUrl {
   my $url = shift;
 
-  my $ua         = p_createUserAgent();
-  my $response   = p_getUrl( $ua, $url );
-  my @listStatus = p_parseResponse($response);
+  my $uri = URI->new($url);
+  if ( $uri->scheme and $uri->opaque ) {
+    my $ua         = p_createUserAgent();
+    my $response   = p_getUrl( $ua, $url );
+    my @listStatus = p_parseResponse($response);
 
-  return @listStatus;
+    return @listStatus;
+  }
+  else {
+    carp "Wrong url: $url";
+  }
+  return;
 }
 
 =head1 PRIVATE SUBROUTINES/METHODS

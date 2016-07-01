@@ -12,11 +12,14 @@ my $builder = Module::Build->new(
   configure_requires => { 'Module::Build' => 0, },
   build_requires     => {
     'Test::More'            => 0,
+    'Test::Warn'            => 0.30,
     'File::Temp'            => 0.2304,
     'File::Find::Rule'      => 0.34,
     'File::Copy::Recursive' => 0.38,
   },
   requires => {
+    'URI'            => 1.71,
+    'Carp'           => 1.38,
     'JSON'           => 2.90,
     'Readonly'       => 2.05,
     'LWP::UserAgent' => 6.15,
