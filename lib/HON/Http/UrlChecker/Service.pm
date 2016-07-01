@@ -6,7 +6,6 @@ use warnings;
 
 use URI;
 use Carp;
-use JSON;
 use Readonly;
 use LWP::UserAgent;
 
