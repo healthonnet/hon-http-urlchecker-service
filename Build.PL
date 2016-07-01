@@ -18,6 +18,7 @@ my $builder = Module::Build->new(
     'File::Copy::Recursive' => 0.38,
   },
   requires => {
+    'CGI'            => 4.31,
     'URI'            => 1.71,
     'Carp'           => 1.38,
     'JSON'           => 2.90,

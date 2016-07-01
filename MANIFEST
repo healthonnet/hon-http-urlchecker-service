@@ -2,6 +2,7 @@
 .perlcriticrc
 .perltidyrc
 .travis.yml
+cgi/url-checker-service.cgi
 Changes
 ignore.txt
 lib/HON/Http/UrlChecker/Service.pm
