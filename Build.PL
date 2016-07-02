@@ -14,6 +14,7 @@ my $builder = Module::Build->new(
   release_status     => 'stable',
   configure_requires => { 'Module::Build' => 0, },
   build_requires     => {
+    'CGI::Test'             => 1.111,
     'Test::More'            => 0,
     'File::Temp'            => 0.2304,
     'Test::Exception'       => 0.43,

@@ -5,6 +5,7 @@ use warnings;
 
 use CGI;
 use JSON;
+use Try::Tiny;
 
 use HON::Http::UrlChecker::Service qw/checkUrl/;
 
@@ -12,14 +13,15 @@ my $cgi = CGI->new();
 my $url = $cgi->param('url') || undef;
 
 if (defined $url) {
-  my @listOfStatus = checkUrl($url);
-  my $json = to_json(\@listOfStatus, {pretty => 1});
-  printOutput($json, 200);
+  try {
+    my @listOfStatus = checkUrl($url);
+    my $json = to_json(\@listOfStatus, {pretty => 1});
+    printOutput($json, 200);
+  } catch {
+    badRequest();
+  }
 } else {
-  printOutput(
-    '{"error": "Bad Request"}',
-    '400 Bad Request'
-  );
+  badRequest();
 }
 
 =head2 printOutput
@@ -37,4 +39,17 @@ sub printOutput {
     -status  => $status,
   );
   print "$json\n";
+}
+
+=head2 badRequest
+
+Print a 400 Bad Request
+
+=cut
+
+sub badRequest {
+  printOutput(
+    '{"error": "Bad Request"}',
+    '400 Bad Request'
+  );
 }
