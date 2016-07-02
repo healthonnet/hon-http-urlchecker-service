@@ -9,7 +9,7 @@ unless ( $ENV{RELEASE_TESTING} ) {
 }
 
 my $FAKE_URL   = 'http://server:80/cgi';
-my $CGI_DIR    = '/perl/hon-http-urlchecker-service/cgi';
+my $CGI_DIR    = 'cgi';
 my $CGI_SCRIPT = 'url-checker-service.cgi';
 
 my $ct = CGI::Test->new(
