@@ -74,9 +74,8 @@ sub checkUrl {
     return @listStatus;
   }
   else {
-    carp "Wrong url: $url";
+    croak "Wrong url: $url";
   }
-  return;
 }
 
 =head1 PRIVATE SUBROUTINES/METHODS

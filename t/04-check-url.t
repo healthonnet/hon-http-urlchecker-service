@@ -5,7 +5,7 @@ use lib 't/';
 use MockSite;
 use HON::Http::UrlChecker::Service qw/checkUrl/;
 
-use Test::Warn;
+use Test::Exception;
 use Test::More tests => 13;
 
 my $urlRoot = MockSite::mockLocalSite('t/resources/t-gone');
@@ -25,9 +25,5 @@ my @wrongUrls = (
   '://', 'www.example.com', 'example.com/abc', '://example.com', '', 'http:',
 );
 foreach my $url (@wrongUrls){
-  warning_is {
-    carp => checkUrl($url)
-  } {
-    carped => "Wrong url: $url"
-  };
+  throws_ok { checkUrl($url) } qr/Wrong url: $url/;
 }
