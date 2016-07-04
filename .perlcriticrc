@@ -24,6 +24,7 @@ allow_leading_tabs = 0
 # POD section
 [Documentation::RequirePodSections]
 lib_sections = NAME | SYNOPSIS | DESCRIPTION | SUBROUTINES/METHODS | AUTHOR | BUGS AND LIMITATIONS | LICENSE AND COPYRIGHT
+script_sections = NAME | DESCRIPTION | USAGE | REQUIRED ARGUMENTS | AUTHOR | BUGS AND LIMITATIONS | LICENSE AND COPYRIGHT
 
 [CodeLayout::RequireTidyCode]
 perltidyrc = .perltidyrc
