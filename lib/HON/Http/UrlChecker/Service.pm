@@ -39,6 +39,8 @@ our @EXPORT_OK = qw/p_createUserAgent p_getUrl p_parseResponse checkUrl/;
 
 Readonly::Scalar my $TIMEOUT => 1200;
 
+Readonly::Scalar my $MAXREDIRECT => 10;
+
 Readonly::Array my @HEADERFIELDS => qw(
   location
   server
@@ -93,6 +95,7 @@ sub p_createUserAgent {
   $ua->timeout($TIMEOUT);
   $ua->agent('HonBot');
   $ua->env_proxy;
+  $ua->max_redirect($MAXREDIRECT);
 
   return $ua;
 }
