@@ -18,3 +18,5 @@ nytprof.out
 pod2htm*.tmp
 pm_to_blib
 MANIFEST.bak
+HON-Http-UrlChecker-Service-*
+HON-Http-UrlChecker-Service-*.tar.gz
