@@ -30,7 +30,13 @@ my $builder = Module::Build->new(
     'Readonly'       => 2.05,
     'LWP::UserAgent' => 6.15,
   },
-  cgi_files          => \%cgis,
+  cgi_files  => \%cgis,
+  meta_merge => {
+    resources => {
+      repository =>
+        'https://github.com/healthonnet/hon-http-urlchecker-service',
+    },
+  },
   add_to_cleanup     => ['HON-Http-UrlChecker-Service-*'],
   create_makefile_pl => 'traditional',
 );
