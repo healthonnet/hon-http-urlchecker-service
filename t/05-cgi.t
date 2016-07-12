@@ -24,6 +24,6 @@ like($page->raw_content, qr/error/, 'Content');
 
 $page = $ct->GET("$FAKE_URL/$CGI_SCRIPT?url=http://www.apple.com");
 like($page->content_type, qr|application/json|, 'Content type');
-is($page->header('status'), '200', 'headers status');
+is($page->header('status'), '200 OK', 'headers status');
 
 done_testing();

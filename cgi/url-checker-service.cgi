@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use CGI;
+use Carp;
 use JSON;
 use Try::Tiny;
 
@@ -47,7 +48,7 @@ if (defined $url) {
   try {
     my @listOfStatus = checkUrl($url);
     my $json = to_json(\@listOfStatus, {pretty => 1});
-    printOutput($json, 200);
+    printOutput($json, '200 OK');
   } catch {
     badRequest();
   }
@@ -66,12 +67,13 @@ Print the http header et the json response.
 sub printOutput {
   my ($json, $status) = @_;
 
-  print $cgi->header(
+  my $content = $cgi->header(
     -type    => 'application/json',
     -charset => 'utf-8',
     -status  => $status,
   );
-  print "$json\n";
+  $content .= $json;
+  print "$content\n" or croak "Cannot print...\n";
 
   return;
 }
