@@ -44,15 +44,17 @@ our $VERSION = '0.01';
 my $cgi = CGI->new();
 my $url = $cgi->param('url') || undef;
 
-if (defined $url) {
+if ( defined $url ) {
   try {
     my @listOfStatus = checkUrl($url);
-    my $json = to_json(\@listOfStatus, {pretty => 1});
-    printOutput($json, '200 OK');
-  } catch {
+    my $json = to_json( \@listOfStatus, { pretty => 1 } );
+    printOutput( $json, '200 OK' );
+  }
+  catch {
     badRequest();
   }
-} else {
+}
+else {
   badRequest();
 }
 
@@ -65,7 +67,7 @@ Print the http header et the json response.
 =cut
 
 sub printOutput {
-  my ($json, $status) = @_;
+  my ( $json, $status ) = @_;
 
   my $content = $cgi->header(
     -type    => 'application/json',
@@ -85,10 +87,7 @@ Print a 400 Bad Request
 =cut
 
 sub badRequest {
-  printOutput(
-    '{"error": "Bad Request"}',
-    '400 Bad Request'
-  );
+  printOutput( '{"error": "Bad Request"}', '400 Bad Request' );
 
   return;
 }
