@@ -72,6 +72,8 @@ sub printOutput {
     -status  => $status,
   );
   print "$json\n";
+
+  return;
 }
 
 =head2 badRequest
@@ -85,6 +87,8 @@ sub badRequest {
     '{"error": "Bad Request"}',
     '400 Bad Request'
   );
+
+  return;
 }
 
 =head1 AUTHOR
