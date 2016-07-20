@@ -135,13 +135,13 @@ sub p_retrieveInfo {
       $locationStatus{$field} = $response->$field;
 
       # Put status code in integer
-      if ($field eq 'code') {
+      if ( $field eq 'code' ) {
         $locationStatus{$field} = $locationStatus{$field} + 0;
       }
 
-      if ($field eq 'message') {
-        $locationStatus{$field} =
-          join q{ }, map {ucfirst lc} split q{ }, $locationStatus{$field};
+      if ( $field eq 'message' ) {
+        $locationStatus{$field} = join q{ }, map { ucfirst lc } split q{ },
+          $locationStatus{$field};
       }
     }
   }
