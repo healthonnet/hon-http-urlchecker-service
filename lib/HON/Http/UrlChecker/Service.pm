@@ -133,6 +133,11 @@ sub p_retrieveInfo {
   foreach my $field (@RESPONSEFIELDS) {
     if ( defined $response->$field ) {
       $locationStatus{$field} = $response->$field;
+
+      # Put status code in integer
+      if ($field eq 'code') {
+        $locationStatus{$field} = $locationStatus{$field} + 0;
+      }
     }
   }
 
