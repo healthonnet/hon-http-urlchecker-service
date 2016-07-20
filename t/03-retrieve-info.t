@@ -18,7 +18,7 @@ my $expectedResult = [{
   code    => 200,
   date    => 'Sat, 25 Jun 2016 16:38:00 GMT',
   server  => 'Apache',
-  message => 'OK',
+  message => 'Ok',
 }];
 
 my @list = p_parseResponse($response);
@@ -42,7 +42,7 @@ $expectedResult = [{
   code    => 200,
   date    => 'Sat, 25 Jun 2016 16:38:00 GMT',
   server  => 'Apache',
-  message => 'OK',
+  message => 'Ok',
 }];
 
 @list = p_parseResponse($response);

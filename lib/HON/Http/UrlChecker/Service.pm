@@ -138,6 +138,11 @@ sub p_retrieveInfo {
       if ($field eq 'code') {
         $locationStatus{$field} = $locationStatus{$field} + 0;
       }
+
+      if ($field eq 'message') {
+        $locationStatus{$field} =
+          join q{ }, map {ucfirst lc} split q{ }, $locationStatus{$field};
+      }
     }
   }
 

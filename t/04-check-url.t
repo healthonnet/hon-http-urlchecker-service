@@ -19,7 +19,7 @@ is($list[0]->{title}, 'Tinnitus Treatment From T-Gone', '');
 @list = checkUrl($urlRoot . '/foobar.html');
 is(scalar @list, 1, 'a simple 404 response');
 is($list[0]->{code}, 404, 'code should be 404');
-like($list[0]->{message}, qr/does not exist/, 'message should contain not');
+like($list[0]->{message}, qr/Does Not Exist/, 'message should contain not');
 
 my @wrongUrls = (
   '://', 'www.example.com', 'example.com/abc', '://example.com', '', 'http:',
