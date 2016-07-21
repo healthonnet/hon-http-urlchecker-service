@@ -21,7 +21,7 @@ of a HTTP connection.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 USAGE
 
@@ -39,7 +39,7 @@ a url
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my $cgi = CGI->new();
 my $url = $cgi->param('url') || undef;
