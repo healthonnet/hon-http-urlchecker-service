@@ -35,7 +35,8 @@ of a HTTP connection.
 =cut
 
 use base 'Exporter';
-our @EXPORT_OK = qw/p_createUserAgent p_getUrl p_parseResponse checkUrl/;
+our @EXPORT_OK =
+  qw/p_createUserAgent p_getUrl p_parseResponse p_isUrlAllowed checkUrl/;
 
 Readonly::Scalar my $TIMEOUT => 1200;
 
@@ -67,8 +68,7 @@ redirect chain).
 sub checkUrl {
   my $url = shift;
 
-  my $uri = URI->new($url);
-  if ( $uri->scheme and $uri->opaque ) {
+  if ( p_isUrlAllowed($url) ) {
     my $ua         = p_createUserAgent();
     my $response   = p_getUrl( $ua, $url );
     my @listStatus = p_parseResponse($response);
@@ -170,6 +170,26 @@ sub p_parseResponse {
   push @listStatus, \%status;
 
   return @listStatus;
+}
+
+=head2 p_isUrlAllowed
+
+Check if the url is formatted correctly
+
+=cut
+
+sub p_isUrlAllowed {
+  my $url = shift;
+
+  return unless $url;
+  my $uri = URI->new($url);
+  return unless $uri->scheme and $uri->opaque;
+
+  if ( $uri->scheme eq 'http' or $uri->scheme eq 'https' ) {
+    return unless $uri->authority;
+  }
+
+  return 1;
 }
 
 =head1 AUTHOR
