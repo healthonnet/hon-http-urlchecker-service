@@ -34,6 +34,10 @@ $ ./Build test
 $ ./Build install
 ```
 
+See also
+--------
+  * https://github.com/healthonnet/hon-http-urlchecker
+
 Support and documentation
 -------------------------
 
